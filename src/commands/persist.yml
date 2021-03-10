@@ -14,8 +14,7 @@ steps:
     run: |-
       mkdir -p /tmp/workspace
       echo "${<< parameters.environment-variable >>}" > /tmp/workspace/<< parameters.path >>
-  - name: Persist haikunator ID to workspace
-    persist_to_workspace:
+  - persist_to_workspace:
       root: /tmp/workspace
       paths:
         - << parameters.path >>
