@@ -22,16 +22,22 @@ parameters:
 
 jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
-  integration-test:
+  integration-test-commands:
     docker:
       - image: cimg/node:lts
     steps:
-      - checkout
       - haikunator/install
       - haikunator/generate:
           seed: test
       - run: |
           [[ "$HAIKUNATOR_ID" == 'cold-math-1218' ]]
+  integration-test-job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - haikunator/load
+      - run: |
+        [[ "$HAIKUNATOR_ID" == 'cold-math-1218' ]]
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -62,7 +68,11 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
-      - integration-test
+      - integration-test-commands
+      - haikunator/generate:
+          seed: test
+      - integration-test-job:
+          requires: [haikunator/generate]
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
