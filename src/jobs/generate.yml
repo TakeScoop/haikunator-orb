@@ -4,6 +4,15 @@ description: >
 executor: default
 
 parameters:
+  package:
+    type: string
+    default: haikunator-cli
+    description: The name of the haikunator-cli package
+  version:
+    type: string
+    default: '1'
+    description: The haikunator-cli version to install
+
   adjectives:
     type: string
     default: ''
@@ -39,6 +48,9 @@ parameters:
     description: The filepath where the Haikunator ID will be persisted in the workspace
 
 steps:
+  - install:
+      package: << parameters.package >>
+      version: << parameters.version >>
   - generate:
       adjectives: << parameters.adjectives >>
       nouns: << parameters.nouns >>
