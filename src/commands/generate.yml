@@ -47,5 +47,5 @@ steps:
           --length="<< parameters.token-length >>" \
           <<# parameters.token-chars >>--chars="<< parameters.token-chars >>"<</ parameters.token-chars >> \
         )"
-        
+
         echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV

@@ -41,7 +41,7 @@ parameters:
     type: string
     default: ''
     description: The characters that will be used to generate a random token
-  
+
   path:
     type: string
     default: haikunator-id
@@ -61,4 +61,3 @@ steps:
       token-chars: << parameters.token-chars >>
   - persist:
       path: << parameters.path >>
-

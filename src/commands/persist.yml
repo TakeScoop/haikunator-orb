@@ -10,7 +10,7 @@ parameters:
     default: haikunator-id
     description: The filepath where the Haikunator ID will be persisted in the workspace
 steps:
-  - run: 
+  - run:
       name: Write haikunator ID to file
       command: |-
         mkdir -p /tmp/workspace
