@@ -39,13 +39,13 @@ steps:
       name: Generate haikunator ID
       command: |-
         id="$(npx haikunator \
-          << #parameters.adjectives >>--adjectives="<< parameters.adjectives >>"<< /parameters.adjectives >> \
-          << #parameters.nouns >>--nouns="<< parameters.nouns >>"<< /parameters.nouns >> \
-          << #parameters.seed >>--seed="<< parameters.seed >>"<< /parameters.seed >> \
+          <<# parameters.adjectives >>--adjectives="<< parameters.adjectives >>"<</ parameters.adjectives >> \
+          <<# parameters.nouns >>--nouns="<< parameters.nouns >>"<</ parameters.nouns >> \
+          <<# parameters.seed >>--seed="<< parameters.seed >>"<</ parameters.seed >> \
           --delimiter="<< parameters.delimiter >>" \
-          << #parameters.token-hex >>--hex<< /parameters.token-hex >> \
+          <<# parameters.token-hex >>--hex<</ parameters.token-hex >> \
           --length="<< parameters.token-length >>" \
-          << #parameters.token-hex >>--hex<< /parameters.token-hex >> \
-          << #parameters.token-chars >>--chars="<< parameters.token-chars >>"<< /parameters.token-chars >> \
+          <<# parameters.token-chars >>--chars="<< parameters.token-chars >>"<</ parameters.token-chars >> \
         )"
+        
         echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV
