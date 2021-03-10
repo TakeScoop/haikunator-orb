@@ -1,13 +1,17 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Generate a haikunator ID in a job and load it in another.
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    haikunator: takescoop/haikunator@1.0.0
+  jobs:
+    push:
+      steps:
+        - haikunator/load
+        - docker build . -t "$HAIKUNATOR_ID"
   workflows:
-    use-my-orb:
+    main:
       jobs:
-        - <orb-name>/<job-name>
+        - haikunator/generate
+        - push:
+            requires: [haikunator/generate]
