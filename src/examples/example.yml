@@ -6,7 +6,10 @@ usage:
     haikunator: takescoop/haikunator@1.0.0
   jobs:
     push:
+      docker:
+        - image: cimg/base:stable
       steps:
+        - setup_remote_docker
         - haikunator/load
         - docker build . -t "$HAIKUNATOR_ID"
   workflows:
