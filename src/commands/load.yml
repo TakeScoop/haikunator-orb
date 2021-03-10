@@ -12,7 +12,8 @@ parameters:
 steps:
   - attach_workspace:
       at: /tmp/workspace
-  - name: Load haikunator ID from workspace
-    run: |-
-      id="$(cat "/tmp/workspace/<< parameters.path >>")"
-      echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV
+  - run:
+      name: Load haikunator ID from workspace
+      command: |-
+        id="$(cat "/tmp/workspace/<< parameters.path >>")"
+        echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV
