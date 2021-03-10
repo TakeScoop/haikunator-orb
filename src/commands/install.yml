@@ -12,4 +12,4 @@ parameters:
 steps:
   - run:
       name: Install haikunator
-      command: npm install --global << parameters.package >>@<< parameters.version >>
+      command: npm install --prefix=$HOME/.local --global << parameters.package >>@<< parameters.version >>
