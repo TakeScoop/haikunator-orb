@@ -1,0 +1,21 @@
+description: >
+  Persists a haikunator ID for use in another job
+parameters:
+  environment-variable:
+    type: env_var_name
+    default: HAIKUNATOR_ID
+    description: The environment variable that will be persisted
+  path:
+    type: string
+    default: haikunator-id
+    description: The filepath where the Haikunator ID will be persisted in the workspace
+steps:
+  - name: Write haikunator ID to file
+    run: |-
+      mkdir -p /tmp/workspace
+      echo "${<< parameters.environment-variable >>}" > /tmp/workspace/<< parameters.path >>
+  - name: Persist haikunator ID to workspace
+    persist_to_workspace:
+      root: /tmp/workspace
+      paths:
+        - << parameters.path >>

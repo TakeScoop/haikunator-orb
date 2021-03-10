@@ -1,0 +1,51 @@
+description: >
+  Generates a haikunator ID and saves it to an environment variable
+parameters:
+  environment-variable:
+    type: env_var_name
+    default: HAIKUNATOR_ID
+    description: The environment variable where the haikunator ID will be saved
+  adjectives:
+    type: string
+    default: ''
+    description: A comma-separated list of adjectives
+  nouns:
+    type: string
+    default: ''
+    description: A comma-separated list of nouns
+  seed:
+    type: string
+    default: ''
+    description: A seed to use when generating the random ID
+  delimiter:
+    type: string
+    default: '-'
+    description: The delimiter used between ID parts
+  token-hex:
+    type: boolean
+    default: false
+    description: Use a hexadecimal token instead of numbers
+  token-length:
+    type: int
+    default: 4
+    description: The number of random tokens
+  token-chars:
+    type: string
+    default: ''
+    description: The characters that will be used to generate a random token
+
+steps:
+  - run:
+      name: Generate haikunator ID
+      command: |-
+        id="$(npx haikunator \
+          << #parameters.adjectives >>--adjectives="<< parameters.adjectives >>"<< /parameters.adjectives >> \
+          << #parameters.nouns >>--nouns="<< parameters.nouns >>"<< /parameters.nouns >> \
+          << #parameters.seed >>--seed="<< parameters.seed >>"<< /parameters.seed >> \
+          --delimiter="<< parameters.delimiter >>" \
+          << #parameters.token-hex >>--hex<< /parameters.token-hex >> \
+          --length="<< parameters.token-length >>" \
+          << #parameters.token-hex >>--hex<< /parameters.token-hex >> \
+          << #parameters.token-chars >>--chars="<< parameters.token-chars >>"<< /parameters.token-chars >> \
+        )"
+        echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV

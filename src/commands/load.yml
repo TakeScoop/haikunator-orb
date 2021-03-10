@@ -1,0 +1,18 @@
+description: >
+  Loads a haikunator ID persisted in another job
+parameters:
+  environment-variable:
+    type: env_var_name
+    default: HAIKUNATOR_ID
+    description: The environment variable where the haikunator ID will be loaded
+  path:
+    type: string
+    default: haikunator-id
+    description: The filepath in the workspace from which the haikunator ID will be loaded
+steps:
+  - attach_workspace:
+      at: /tmp/workspace
+  - name: Load haikunator ID from workspace
+    run: |-
+      id="$(cat "/tmp/workspace/<< parameters.path >>")"
+      echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV

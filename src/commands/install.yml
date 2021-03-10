@@ -1,0 +1,15 @@
+description: >
+  Installs haikunator-cli
+parameters:
+  package:
+    type: string
+    default: haikunator-cli
+    description: The name of the haikunator-cli package
+  version:
+    type: string
+    default: '1'
+    description: The haikunator-cli version to install
+steps:
+  - run:
+      name: Install haikunator
+      command: npm install --global << parameters.package >>@<< parameters.version >>

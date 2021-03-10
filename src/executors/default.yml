@@ -1,11 +1,9 @@
 description: >
-  This is a sample executor using Docker and Node.
+  Node.js executor
 docker:
-  - image: 'cimg/node:<<parameters.tag>>'
+  - image: 'node:<<parameters.tag>>'
 parameters:
   tag:
-    default: lts
-    description: >
-      Pick a specific circleci/node image variant:
-      https://hub.docker.com/r/cimg/node/tags
+    default: 14-slim
+    description: A Node.js image version
     type: string
