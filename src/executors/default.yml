@@ -1,9 +1,9 @@
 description: >
   Node.js executor
 docker:
-  - image: 'node:<<parameters.tag>>'
+  - image: 'cimg/node:<<parameters.tag>>'
 parameters:
   tag:
-    default: 14-slim
-    description: A Node.js image version
+    default: lts
+    description: A CircleCI Node.js image version
     type: string
