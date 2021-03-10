@@ -34,7 +34,7 @@ parameters:
     default: false
     description: Use a hexadecimal token instead of numbers
   token-length:
-    type: int
+    type: integer
     default: 4
     description: The number of random tokens
   token-chars:
