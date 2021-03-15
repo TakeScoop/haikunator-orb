@@ -49,3 +49,4 @@ steps:
         )"
 
         echo "export << parameters.environment-variable >>=\"$id\"" >> $BASH_ENV
+        echo "$id"
