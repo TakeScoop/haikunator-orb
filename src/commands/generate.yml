@@ -38,7 +38,7 @@ steps:
   - run:
       name: Generate haikunator ID
       command: |-
-        id="$(npx haikunator \
+        id="$(haikunator \
           <<# parameters.adjectives >>--adjectives="<< parameters.adjectives >>"<</ parameters.adjectives >> \
           <<# parameters.nouns >>--nouns="<< parameters.nouns >>"<</ parameters.nouns >> \
           <<# parameters.seed >>--seed="<< parameters.seed >>"<</ parameters.seed >> \
