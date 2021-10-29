@@ -24,7 +24,7 @@ jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-commands:
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:14.18
     steps:
       - haikunator/install
       - haikunator/generate:

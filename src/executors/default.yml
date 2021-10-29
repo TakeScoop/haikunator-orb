@@ -4,6 +4,6 @@ docker:
   - image: 'cimg/node:<<parameters.tag>>'
 parameters:
   tag:
-    default: lts
+    default: 14.18
     description: A CircleCI Node.js image version
     type: string
