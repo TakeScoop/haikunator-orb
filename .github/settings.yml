@@ -1,0 +1,16 @@
+_extends: .github
+repository:
+  name: haikunator-orb
+  description: CircleCI orb for generating haiku-style release identifiers (e.g., delicate-wave-1151) 
+  topics: platform, circleci, circleci-orb
+  homepage: https://circleci.com/developer/orbs/orb/takescoop/haikunator
+  allow_auto_merge: true
+teams:
+  - name: engineering
+    permission: push
+branches:
+  - name: master
+    protection:
+      required_status_checks:
+        contexts:
+          - integration-test_deploy
